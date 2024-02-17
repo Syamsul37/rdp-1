@@ -21,8 +21,6 @@ jobs:
       run: .\ngrok\ngrok.exe config add-authtoken 1wGbGexmlyZmGmbxZpzLQSJIr9O_4fAHRY7f6sJtoMUok3Uac
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-    - name: jajal ngorok
-      run: .\ngrok\ngrok.exe tcp 3389
     - name: Activating RDP access.
       run: | 
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
@@ -34,6 +32,8 @@ jobs:
       run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp -region ap 3389"'
     - name: Connecting to your RDP.
       run: cmd /c start.bat
+    - name: Jajal Ngorok
+      run: .\ngrok\ngrok.exe tcp 3389
     - name: RDP is ready!
       run: | 
         Invoke-WebRequest https://github.com/Syamsul37/rdp1/raw/main/loop.ps1 -OutFile loop.ps1
